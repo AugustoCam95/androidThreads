@@ -42,12 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 progressBar.setVisibility(View.VISIBLE);
                 DoIt loadImage = new DoIt();
                 loadImage.execute("http://inacio.com.br/wp-content/uploads/2013/02/logo_ufc-virtual.jpg");
+                break;
         }
     }
 
-    public class DoIt extends AsyncTask<String, Void, Bitmap> {
+    private class DoIt extends AsyncTask<String, Void, Bitmap>{
 
-         public Bitmap loadImageFromNet(String url) {
+         private Bitmap loadImageFromNet(String url) {
             try {
                 Bitmap bitmap = BitmapFactory.decodeStream((InputStream) new URL(url).getContent());
                 return bitmap;
@@ -64,12 +65,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-        protected void onExecute(Bitmap result) {
-            imageView.setImageBitmap(result);
-            progressBar.setVisibility(View.INVISIBLE);
-            Log.v("tag", "Rolling after ");
+        protected void OnPostExecute(Bitmap result){
+             imageView.setImageBitmap(result);
+             progressBar.setVisibility(View.INVISIBLE);
+             Log.v("TAG","Rolling after background");
         }
-
     }
 
 }
